@@ -21,9 +21,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import net.sdvn.cmapi.CMAPI;
 import net.sdvn.cmapi.protocal.ConnectStatusListenerPlus;
 import net.sdvn.cmapi.protocal.ResultListener;
-import net.sdvn.shield.MobileAPI;
 
 /**
  * @author Raleigh.Luo
@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //配置你的登录认证服务器地址，如 net.cmhk.com
-        MobileAPI.setLoginAsHost("你的登录认证服务器地址");
+        CMAPI.getInstance().setLoginAsHost("你的登录认证服务器地址");
         initView();
 //        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)!=PackageManager.PERMISSION_GRANTED)
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE,
@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
 //            //请求Token
 //            String token = requestToken(account);
 //            //调用平台短信验证码登录API
-            MobileAPI.login(account, password, new ResultListener() {
+            CMAPI.getInstance().login(account, password, new ResultListener() {
                 @Override
                 public void onError(int errorCode) {
                     if (errorCode == Constants.DR_CALL_THIRD_API_FAIL || errorCode == Constants.DR_INVALID_CODE) {
@@ -105,14 +105,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void autoLogin() {
-        if (MobileAPI.getBaseInfo() != null) {
+        if (CMAPI.getInstance().getBaseInfo() != null) {
             //获取上一次登录帐号
             SharedPreferences sp = getSharedPreferences("user", Context.MODE_PRIVATE);
             String lastLoginAccount = sp.getString("account", null);
             if (!TextUtils.isEmpty(lastLoginAccount)) {
                 etAccount.setText(lastLoginAccount);
                 //调用自动登录API
-                MobileAPI.loginByTicket(lastLoginAccount, new ResultListener() {
+                CMAPI.getInstance().loginByTicket(lastLoginAccount, new ResultListener() {
                     @Override
                     public void onError(int errorCode) {
                         if (errorCode == Constants.DR_VPN_TUNNEL_IS_OCCUPIED) {
@@ -159,14 +159,14 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         //添加监听器
-        MobileAPI.addConnectionStatusListener(listener);
+        CMAPI.getInstance().addConnectionStatusListener(listener);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         //移除监听器
-        MobileAPI.removeConnectionStatusListener(listener);
+        CMAPI.getInstance().removeConnectionStatusListener(listener);
     }
 
     private ConnectStatusListenerPlus listener = new ConnectStatusListenerPlus() {

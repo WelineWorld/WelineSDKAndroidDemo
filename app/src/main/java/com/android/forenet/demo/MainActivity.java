@@ -14,11 +14,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import net.sdvn.cmapi.CMAPI;
 import net.sdvn.cmapi.Network;
 import net.sdvn.cmapi.RealtimeInfo;
 import net.sdvn.cmapi.protocal.ConnectStatusListenerPlus;
 import net.sdvn.cmapi.protocal.EventObserver;
-import net.sdvn.shield.MobileAPI;
 import net.sdvn.cmapi.global.Constants;
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initView();
         //监听VPN隧道占用情况、实时监听在线时长或时延等信息
-        MobileAPI.subscribe(mEventObserver);
+        CMAPI.getInstance().subscribe(mEventObserver);
     }
 
     @Override
@@ -37,14 +37,14 @@ public class MainActivity extends AppCompatActivity {
         //Activity页面恢复时，处理最新状态
         dealLastStatus();
         //添加登录状态监听器
-        MobileAPI.addConnectionStatusListener(statusListener);
+        CMAPI.getInstance().addConnectionStatusListener(statusListener);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         //移除状态监听器
-        MobileAPI.removeConnectionStatusListener(statusListener);
+        CMAPI.getInstance().removeConnectionStatusListener(statusListener);
     }
     private TextView tvStatus,tvUptimeTitle,tvNetworkTitle,tvLatencyTitle;
     private View loading;
@@ -66,12 +66,12 @@ public class MainActivity extends AppCompatActivity {
         if(view.getId() == R.id.btnLoginOut){
             showLoadingProgress();
             //调用退出登录API
-            MobileAPI.disconnect();
+            CMAPI.getInstance().disconnect();
             //移除帐号信息
-            MobileAPI.removeUser(MobileAPI.getBaseInfo().getUserId());
+            CMAPI.getInstance().removeUser(CMAPI.getInstance().getBaseInfo().getUserId());
             if(!checkNetwork()){//无网络情况下(无法连接外网)，会自动断开，无需等待回调
                 //不再重连
-                MobileAPI.cancelLogin();
+                CMAPI.getInstance().cancelLogin();
                 //退出登录
                 exit();
             }else{//等待连接断开
@@ -171,8 +171,8 @@ public class MainActivity extends AppCompatActivity {
      * Activity页面恢复时，处理最新状态
      */
     public void dealLastStatus() {
-        if(MobileAPI.getRealtimeInfo()!=null){
-            int status = MobileAPI.getRealtimeInfo().getCurrentStatus();
+        if(CMAPI.getInstance().getRealtimeInfo()!=null){
+            int status = CMAPI.getInstance().getRealtimeInfo().getCurrentStatus();
             switch (status){
                 case Constants.CS_CONNECTING://正在重连...
                     statusListener.onConnecting();
@@ -228,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
      * @return
      */
     public String getCurrentVirtualNetworkName() {
-        for (Network network : MobileAPI.getNetworkList()) {
+        for (Network network : CMAPI.getInstance().getNetworkList()) {
             if (network.isCurrent())
                 return network.getName();
         }

@@ -28,7 +28,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.annotation:annotation:1.1.0'
     testImplementation 'junit:junit:4.12'
-    implementation files('libs/cmapi_v3_0_3134_MobileShield_release.aar')
+    implementation files('libs/cmapi_v3_0_3134_basic_release.aar')
 
 
 }
