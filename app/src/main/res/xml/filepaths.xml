@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resource xmlns:android="http://schemas.android.com/apk/res/android">
+    <paths>
+        <!--以下仅为样例，可自定义命名-->
+        <external-path
+            name="demo"
+            path="forenet/demo_log/" />
+        <external-path
+            path=""
+            name="download"/>
+    </paths>
+</resource>

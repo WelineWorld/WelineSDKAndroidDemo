@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tvStatusTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="连接状态："
+        android:layout_marginStart="16dip"
+        />
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="正在连接"
+        android:layout_marginTop="16dip"
+        />
+
+    <TextView
+        android:id="@+id/tvUptimeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="在线时长:"
+        android:layout_marginTop="36dip"
+        />
+    <TextView
+        android:id="@+id/tvNetworkTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="当前网络:"
+        android:layout_marginTop="16dip"
+        />
+    <TextView
+        android:id="@+id/tvLatencyTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="时延:"
+        android:layout_marginTop="16dip"
+        />
+
+    <Button
+        android:id="@+id/btnLoginOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="64dp"
+        android:text="退出登录"
+        android:onClick="loginOut"></Button>
+
+    <FrameLayout
+        android:id="@+id/loading"
+        android:layout_width="0dip"
+        android:layout_height="0dip"
+        android:background="#66000000"
+        android:visibility="gone">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="64dp"
+            />
+    </FrameLayout>
+
+
+</LinearLayout>
