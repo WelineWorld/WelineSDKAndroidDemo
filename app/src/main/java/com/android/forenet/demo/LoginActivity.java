@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //配置你的登录认证服务器地址，如 net.cmhk.com
-        MobileAPI.setLoginAsHost("test.memenet.net");
+        MobileAPI.setLoginAsHost("你的登录认证服务器地址");
         initView();
 //        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)!=PackageManager.PERMISSION_GRANTED)
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE,
@@ -58,10 +58,8 @@ public class LoginActivity extends AppCompatActivity {
         //用户点击了登录按钮
         if (view.getId() == R.id.btnLogin) {
 //            //获取用户输入的手机号码
-//            String account = etAccount.getText().toString();
-//            String password = etVerifyCode.getText().toString();
-            String account = "luoli214336774";
-            String password = "luoli214336774.";
+            String account = etAccount.getText().toString();
+            String password = etVerifyCode.getText().toString();
 //            //请求Token
 //            String token = requestToken(account);
 //            //调用平台短信验证码登录API
