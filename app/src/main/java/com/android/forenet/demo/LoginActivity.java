@@ -5,12 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.provider.SyncStateContract;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -19,13 +14,15 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import net.sdvn.cmapi.protocal.ConnectStatusListenerPlus;
 import net.sdvn.cmapi.protocal.ResultListener;
-import net.sdvn.shield.CodeResult;
 import net.sdvn.shield.MobileAPI;
 
 /**
@@ -37,7 +34,7 @@ import net.sdvn.cmapi.global.Constants;
 
 public class LoginActivity extends AppCompatActivity {
     private static String TAG = "LoginActivity";
-    private EditText etAccount;
+    private EditText etAccount, etVerifyCode;
     private Button btnLogin;
     private View loading;
 
@@ -52,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
         //如果您希望登录后，下次进入APP能自动登录
-        autoLogin();
+//        autoLogin();
     }
 
     public void login(View view) {
@@ -62,11 +59,13 @@ public class LoginActivity extends AppCompatActivity {
         if (view.getId() == R.id.btnLogin) {
 //            //获取用户输入的手机号码
 //            String account = etAccount.getText().toString();
+//            String password = etVerifyCode.getText().toString();
+            String account = "luoli214336774";
+            String password = "luoli214336774.";
 //            //请求Token
 //            String token = requestToken(account);
 //            //调用平台短信验证码登录API
-            Log.e("raleigh_test","sdfsds");
-            MobileAPI.login("luoli214336774", "luoli214336774.", new ResultListener() {
+            MobileAPI.login(account, password, new ResultListener() {
                 @Override
                 public void onError(int errorCode) {
                     if (errorCode == Constants.DR_CALL_THIRD_API_FAIL || errorCode == Constants.DR_INVALID_CODE) {
@@ -75,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "用户名错误", Toast.LENGTH_LONG).show();
                     } else if (errorCode == Constants.DR_VPN_TUNNEL_IS_OCCUPIED) {
                         Toast.makeText(LoginActivity.this, "VPN通道被占用", Toast.LENGTH_LONG).show();
-                    } else{
+                    } else {
                         Toast.makeText(LoginActivity.this, "登录失败 errorCode=" + errorCode, Toast.LENGTH_LONG).show();
                     }
                 }
@@ -83,16 +82,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public String requestToken(String account) {
-        //TODO 请求第三方平台Token
-        return "";
-    }
-
-
     private void initView() {
         etAccount = (EditText) findViewById(R.id.etAccount);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         loading = findViewById(R.id.loading);
+        etVerifyCode = (EditText) findViewById(R.id.etVerifyCode);
         etAccount.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

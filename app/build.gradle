@@ -24,12 +24,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:support-v4:25.3.1'
-    implementation 'com.android.support:appcompat-v7:25.3.1'
-    implementation 'com.android.support:support-annotations:25.2.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
     testImplementation 'junit:junit:4.12'
-    implementation files('libs/support_cmapi_v3_0_3131_MobileShield_release.aar')
-    implementation 'com.android.support:support-annotations:24.2.0'
+    implementation files('libs/cmapi_v3_0_3134_MobileShield_release.aar')
 
 
 }
