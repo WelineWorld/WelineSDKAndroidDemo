@@ -70,17 +70,17 @@ The confidentiality of this guides is secret, and it is forbidden to open this f
 2019/06/21	2.2.0	Solved the problem of waiting for Huawei Network
 2021/05/14	3.0.0	Revised
 
-1. **Summary**
+## **1. Summary**
 
 This document describes the Weline.io SDK used on the Android platform when third-party vendors integrate virtual networks. Its purpose is to allow third-party developers’ developers to quickly embed virtual network functions into third-party applications.
 
 This document is suitable for the company's internal and third-party R&D personnel who have signed the NDA to read.
 
-2. **System Requirements**
+## **2. System Requirements**
 
 The target system to run requires Android 5.0 or higher, and Android 4.4 and lower systems do not provide technical support.
 
-3. **Quick Access**
+## **3. Quick Access**
 ## **Step 1: Get AppID**
 
 Please contact Weline.io Inc. to apply for SDK authorization information. After the application is successful, we will provide a unique identifier for accessing the platform, including AppID, PartnerId and DeviceClassNum, and provide the corresponding SDK text (cmapi_ShieldAPI_vX_X_X_cmg.aar) and Demo project.
@@ -444,7 +444,7 @@ Remove event listener:
 ```plain
 CMAPI.getInstance().unsubscribe(observer);
 ```
-4. **Error code**
+##**4. Error code**
 
 The login callback error code errorCode and the definition of the
 
@@ -453,7 +453,7 @@ reason error code in onDisconnected (shared):
 import net.sdvn.cmapi.global.Constants;
 
 |State name (constant in Constants)|Status value|Description|
-|:----|:----|:----|:----|:----|:----|
+| :-----| :-----| :-----|
 |CS_UNKNOWN|0|Unknown|
 |DR_BY_USER|1|Disconnected by user|
 |DR_MISVERSION|2|The version is too low (login restricted)|
@@ -473,11 +473,11 @@ import net.sdvn.cmapi.global.Constants;
 |DR_CONNECT_TIMEOUT|2019|Connection timed out|
 |DR_VPN_TUNNEL_IS_OCCUPIED|2020|The VPN tunnel is occupied, please turn off other VPNs|
 
-5. **Reference API**
+## **5. Reference API**
 ## **CMAPI**
 
 |method|Description|
-|:----|:----|:----|:----|
+|:----|:----|
 |BaseInfogetBaseInfo()|Get basic information Contains the basic information of the logged-in user and the ticket used for verification.|
 |RealtimeInfo getRealtimeInfo()|Get real-time information Contains real-time information about the current connection, such as: online duration, connection delay, connection status, etc.|
 |boolean removeUser(String id)|Remove the saved account.|
@@ -491,7 +491,7 @@ import net.sdvn.cmapi.global.Constants;
 ## **BaseInfo**
 
 |method|Description|
-|:----|:----|:----|:----|
+|:----|:----|
 |String getVersion()|Contains current basic information|
 |String getAccount()|The currently cached account (the account you have logged in most recently)|
 |List<String> getUserList()|A collection of accounts that are successfully logged in and saved|
@@ -505,7 +505,7 @@ import net.sdvn.cmapi.global.Constants;
 ## **RealtimeInfo**
 
 |method|Description|
-|:----|:----|:----|:----|
+|:----|:----|
 |int getCurrentStatus()|Current state|
 |int getNetLatency()|Network delay|
 |long getOnlineTime()|Online Time|
@@ -513,7 +513,7 @@ import net.sdvn.cmapi.global.Constants;
 ## **Device**
 
 |method|Description|
-|:----|:----|:----|:----|
+|:----|:----|
 |String getID()|DeviceID|
 |String getName()|Device name|
 |String getOwner()|Device Owner|
@@ -525,7 +525,7 @@ import net.sdvn.cmapi.global.Constants;
 ## **Network**
 
 |method|Description|
-|:----|:----|:----|:----|
+|:----|:----|
 |String getID()|Network ID|
 |String getName()|Network name|
 |String getOwner()|Network owner|
@@ -535,7 +535,7 @@ import net.sdvn.cmapi.global.Constants;
 ## **ConnectStatusListenerPlus**
 
 |method|Description|
-|:----|:----|:----|:----|
+|:----|:----|
 |void onConecting()|Call back when the connection is started.<br>It can also be regarded as an automatic reconnection after a successful connection (due to factors such as the network). Generally speaking, unless the logout interface is called after a successful login, the SDK will not actively disconnect and stop the connection. After an abnormal disconnection, it will try to automatically reconnect and call back this method. At this time, you can determine whether to terminate the reconnection (call cancelLogin()).|
 |void onAuthenticated()|Call back after authentication is completed, indicating that the account has been authenticated.|
 |void onConnected()|Call back after a successful login, indicating that the data has been loaded and has the qualification to connect to the virtual network.|
@@ -547,11 +547,11 @@ import net.sdvn.cmapi.global.Constants;
 
 
 |method|Description|
-|:----|:----|:----|:----|
+|:----|:----|
 |void onRealTimeInfoChanged(RealtimeInfo info)|Real-time information changes, this method calls back once per second after subscribing, and the UI can be updated in real time as needed|
 |void onTunnelRevoke (boolean isRevoked)|Call back when the VPN tunnel changes between occupied and idle.<br>isRevoked is true:<br>1. Call back when it is detected that the VPN tunnel is occupied;<br>2. Call back directly when the tunnel is preempted;<br>3. Check if there are other applications using VPN before logging in, and call back if there are.<br><br>isRevoked is false:<br>After the VPN tunnel is occupied, the sdk will automatically detect whether there are other applications currently using the VPN tunnel at a certain interval. If not, it will call back. Each time it is occupied, it will only call back once (it will not return within 5 seconds after the callback returns true. false, protection period).|
 
-6. **FAQ**
+## **6. FAQ**
 * **Cannot log in, prompt 2018——VPN permission denied**
 1. Please note that the Weline.io service is built on the basis of a VPN. To use the Weline.io service, please authorize the VPN for the application first. When the login is called for the first time, a system permission inquiry window will pop up. If you refuse, you need to enter the system setting interface to set it.
 
