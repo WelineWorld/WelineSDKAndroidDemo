@@ -58,17 +58,18 @@ The readers of this guides are developers of third-party vendors who have signed
 The confidentiality of this guides is secret, and it is forbidden to open this file to non-NDA companies or individuals.
 
 ## **History Record**
-
-2017/11/01	1.0.0	First draft completed
-2017/11/03	1.0.1	Supplementary status information
-2018/03/21	1.0.6	SDK integrated into installation package
-2019/03/25	2.1.6	Revised
-2019/04/04	2.1.7	Added an interface to perform monitoring operations based on the current connection status
-2019/04/10	2.1.8	Add FAQ
-2019/04/12	2.1.9	Added test and verification scenarios
-2019/04/22	2.1.10	The layout is optimized, and the FAQ has added instructions on sending notifications when reconnecting
-2019/06/21	2.2.0	Solved the problem of waiting for Huawei Network
-2021/05/14	3.0.0	Revised
+|Date|Version|Description|
+|:----|:----|:----|
+|2017/11/01|1.0.0|First draft completed|
+|2017/11/03|1.0.1|Supplementary status information|
+|2018/03/21|1.0.6|SDK integrated into installation package|
+|2019/03/25|2.1.6|Revised|
+|2019/04/04|2.1.7|Added an interface to perform monitoring operations based on the current connection status|
+|2019/04/10|2.1.8|Add FAQ|
+|2019/04/12|2.1.9|Added test and verification scenarios|
+|2019/04/22|2.1.10|The layout is optimized, and the FAQ has added instructions on sending notifications when reconnecting|
+|2019/06/21|2.2.0|Solved the problem of waiting for Huawei Network|
+|2021/05/14|3.0.0|Revised|
 
 ## **1. Summary**
 
