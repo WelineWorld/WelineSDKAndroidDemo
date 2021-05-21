@@ -123,7 +123,7 @@ dependencies {
 }
 ```
 Finally, synchronize the configuration file Sync project with Gradle Files:
-![图片](https://github.com/welineio/WelineSDKAndroidDemo/blob/master/img/image%20(4).png)
+![图片](https://github.com/welineio/WelineSDKAndroidDemo/blob/master/img/image%20(4).jpeg)
 
 So far, the import of We line SDK development resources is complete.
 
