@@ -26,7 +26,7 @@
 ---
 
 
-![图片](https://github.com/welineio/WelineSDKAndroidDemo/blob/master/img/image.png)
+![图片](https://github.com/welineio/WelineSDKAndroidDemo/blob/master/img/welinelogo.png)
 
 
 ---
