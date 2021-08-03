@@ -127,7 +127,7 @@ dependencies {
 最后，同步下配置文件Sync project with Gradle Files：
 ![图片](https://github.com/welineio/WelineSDKAndroidDemo/blob/master/img/zh-image%20(4).png)
 
-至此，We line SDK 开发资源导入完成。
+至此，Weline SDK 开发资源导入完成。
 
 ### **注册AppId**
 
