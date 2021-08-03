@@ -129,64 +129,6 @@ dependencies {
 
 至此，We line SDK 开发资源导入完成。
 
-### **配置FileProvider**
-
-★ 说明：因We line SDK需读写文件，如果您想兼容Android N或者以上的设备，必须要在AndroidManifest.xml文件中配置FileProvider来访问共享路径的文件。
-
-在您的资源文件下创建xml资源文件夹，并创建filepaths.xml文件：
-
-![图片](https://github.com/welineio/WelineSDKAndroidDemo/blob/master/img/zh-image%20(5).png)
-
-指定FileProvider允许访问的文件路径：
-
-```plain
-<?xml version="1.0" encoding="utf-8"?>
-<resource xmlns:android="http://schemas.android.com/apk/res/android">
-    <paths>
-        <!--以下仅为样例，可自定义命名-->
-        <external-path
-            name="demo"
-            path="forenet/demo_log/" />
-        <external-path
-            path=""
-            name="download"/>
-    </paths>
-</resource>
-```
-在清单文件AndroidManifest.xml里面注册：
-```plain
-<application
-   ....
-  >
-    <!--添加以下内容-->
-    <provider
-        android:name="androidx.core.content.FileProvider"
-        android:authorities="${applicationId}.fileprovider"
-        android:exported="false"
-        android:grantUriPermissions="true">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/filepaths" />
-    </provider>
- ...
-</application>
-```
-### **适配Android Q读写权限问题**
-
-★ 注意：若您应用配置的targetSdkVersion为29及以上（低于29可忽略此项配置），动态获取用户读写内存的权限后，在android Q的手机访问非私有目录的外部储存时，仍会被系统拒绝访问，为正常访问Weline SDK，您需需配置下面的内容。
-
-在AndroidManifest.xml的application中配置android:requestLegacyExternal
-
-Storage为true：
-
-```plain
-<application
-    ...
-    android:requestLegacyExternalStorage="true"
->
-...
-</application>
-```
 ### **注册AppId**
 
 调用SDK中的API前，需要先在您的Application中向平台注册您的AppId，代码如下：
