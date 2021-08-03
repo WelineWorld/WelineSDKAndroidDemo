@@ -127,62 +127,7 @@ Finally, synchronize the configuration file Sync project with Gradle Files:
 
 So far, the import of We line SDK development resources is complete.
 
-### **Configure FileProvider**
 
-★ Note: Because the We line SDK needs to read and write files, if you want to be compatible with Android N or above devices, you must configure FileProvider in the AndroidManifest.xml file to access files in the shared path.
-
-Create an xml resource folder under your resource file, and create a filepaths.xml file:
-
-![图片](https://github.com/welineio/WelineSDKAndroidDemo/blob/master/img/image%20(5).png)
-
-Specify the file path allowed by FileProvider:
-
-```plain
-<?xml version="1.0" encoding="utf-8"?>
-<resource xmlns:android="http://schemas.android.com/apk/res/android">
-    <paths>
-        <!--The following is just a sample, you can customize the name-->
-        <external-path
-            name="demo"
-            path="forenet/demo_log/" />
-        <external-path
-            path=""
-            name="download"/>
-    </paths>
-</resource>
-```
-Register in the manifest file AndroidManifest.xml:
-```plain
-<application
-   ....
-  >
-    <!--Add the following content-->
-    <provider
-        android:name="androidx.core.content.FileProvider"
-        android:authorities="${applicationId}.fileprovider"
-        android:exported="false"
-        android:grantUriPermissions="true">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/filepaths" />
-    </provider>
- ...
-</application>
-```
-### **Adapt to Android Q read and write permission issues**
-
-★ Note: If the targetSdkVersion configured by your application is 29 and above (this configuration can be ignored if it is lower than 29), after dynamically obtaining the user's read and write permissions for memory, when the android Q mobile phone accesses the external storage of the non-private directory, it will still be The system denies access. To access Weline SDK normally, you need to configure the following content.
-
-Configure android:requestLegacyExternalStorage to true in the application of AndroidManifest.xml:
-
-```plain
-<application
-    ...
-    android:requestLegacyExternalStorage="true"
->
-...
-</application>
-```
 ### **Register AppId**
 
 Before calling the API in the SDK, you need to register your AppId with the platform in your Application. The code is as follows:
